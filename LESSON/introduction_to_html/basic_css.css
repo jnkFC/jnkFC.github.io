@@ -6,7 +6,7 @@ body{
 }
 #page ul {
 	position: absolute;
-	top:135px;
+	top:129.5px;
 	left:140px;
 
 }
@@ -14,6 +14,7 @@ body{
 	display: inline;
 	color: #09569d;
 	border: solid;
+	border-bottom: none;
 	border-color:#dddddd;
 	border-width: 1px 1px 1px 1px;
 	border-radius: 4px;
@@ -30,12 +31,15 @@ body{
 	padding:10px 35px 10px 35px;
 	font-size: 14px;
 	background-color: white;
+	z-index:1;
 
 }
-.z_index_news{
-	z-index: :0;
+#News{
+	z-index: -0;
 }
-
+#subscribe{
+	z-index: -0;
+}
 a{
 	text-decoration: none;
 }
@@ -112,7 +116,7 @@ p,table{
     border-style: solid;
 }
 .button_pos_lft{
-	left:25%;
+	left:30%;
 }
 .button_pos_ryt{
 	right:5%;
