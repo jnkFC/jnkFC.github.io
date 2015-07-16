@@ -2,46 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="basic_css.css">
-<script type="text/javascript">
-function tab(i){
-	if(i===1){
-		document.getElementById("News").style.visibility="visible";
-		document.getElementById("subscribe").style.visibility="hidden";
-		document.getElementById("tab2").style.background="white";
-		document.getElementById("tab1").style.background="#e4efff";
-		document.getElementById("tab2_a").style.color=" #6e6e6e";
-		document.getElementById("tab1_a").style.color="#1b6bce";
-	}
-	else{
-		document.getElementById("News").style.visibility="hidden";
-		document.getElementById("subscribe").style.visibility="visible";
-		document.getElementById("tab2").style.background="#e4efff";
-		document.getElementById("tab1").style.background="white";
-		document.getElementById("tab1_a").style.color=" #6e6e6e";
-		document.getElementById("tab2_a").style.color="#1b6bce";
-	}
-}
-function json() {
-    var x = document.forms["subscript"];
-    var text = "";
-    var i;
-    for (i = 0; i < x.length ;i++) {
-    	if(x.elements[i]!=="button"){
-    		if(x.elements[i]==="checkbox"){
-    			text +=x.elements[i].name+":";
-    			for (j = 0; j < interest.length; j++){
-        			if (interest[j].checked) {
-            			text +=interest[j].value +","+ "<br>";
-	   				 }
-    			}
-    		}
-        		text +=x.elements[i].name+":"+ x.elements[i].value + "<br>";
-    }
-    }
-    console.log(eval(text));
-
-}
-</script>
+<script type="text/javascript" src="basic_DOM_element.js"></script>
 </head>
 <body>
 	<div id="Page"> 
@@ -52,7 +13,7 @@ function json() {
 		<div id="News" class="outer_frame border z_index_news" >
 			
 			<div class="frame1 fram_pos positioning border">
-				<h1>WELCOME</h1>
+				<h1>Welcome</h1>
 					<p>Simple and effective AngularJS bindings for FusionCharts JavaScript Charting Library.Simple and 	effective AngularJS bindings for FusionCharts JavaScript Charting Library.</p>
 					<p style="color:#1b6bce"> AngularJS bindings for FusionCharts JavaScript Charting Library</p>
 					<button class="button button_pos_lft">LEARN MORE</button>
@@ -66,12 +27,12 @@ function json() {
 				<div class="sub fram_pos positioning border">
 					<h1>Subscription Form</h1>
 					<form id="subscript">
-					<table cellspacing="20" align="center">
+					<table cellspacing="20">
 						<tr>
-    						<td>Name: </td>
-    						<td><input class="inpt_box" type="text" name="name"></td>
+    						<td>Name </td>
+    						<td><input id="name" class="inpt_box" type="text" name="name"></td>
     						<td>Country: </td>
-    						<td><select class="inpt_box" name="country">
+    						<td><select id="country" class="inpt_box" name="country">
 	  								<option value="INDIA">INDIA</option>
 								  	<option value="PAKISTAN">PAKISTAN</option>
 								  	<option value="SRI-LANKA">SRI-LANKA</option>
@@ -79,13 +40,13 @@ function json() {
 							</td>
     					</tr>
     					<tr>
-    						<td>Email: </td>
+    						<td>Email </td>
     						<td><input class="inpt_box" type="email" id="email_id" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"></td>
-    						<td><label for="address">Address:</label></td>
-    						<td><textarea class="adrs_height inpt_box" name="address" rows="4" cols="40"></textarea> </td>
+    						<td class="row_align"><label for="address">Address</label></td>
+    						<td  rowspan="3"><textarea id="address" class="adrs_height inpt_box" name="address" cols="40"></textarea> </td>
     					</tr>
     					<tr>
-    						<td>SEX:</td>
+    						<td>SEX</td>
     						<td><input type="radio" name="sex" id="male" value="male">
     							<label for="male">Male</label>
     							<input type="radio" name="sex" id="female" value="female">
@@ -99,9 +60,9 @@ function json() {
   								<input type="checkbox" name="interest" value="Reading">Reading  
   							</td></td>
   						</tr>
-    				</table>
-					<button class="button button_pos_ryt" onclick="json()">Subscribe</button>
-					<button type="reset" value="Reset" class="button button_pos_ryt1">Reset</button>
+  					</table>
+					<button class="button button_pos_ryt" onclick="json()">SUBSCRIBE</button>
+					<button type="reset" value="Reset" class="button button_pos_ryt1">RESET</button>
 				</form>
 				</div>
 		</div>

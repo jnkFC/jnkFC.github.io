@@ -24,14 +24,24 @@ body{
 	padding: 10px 50px 10px 50px;
 	font-size: 14px;
 	background-color: #e4efff;
+	z-index: 1;
 }
 .subs_tab{
 	padding:10px 35px 10px 35px;
 	font-size: 14px;
 	background-color: white;
+
 }
 .z_index_news{
-	z-index: :1;
+	z-index: :0;
+}
+
+a{
+	text-decoration: none;
+}
+
+#tab2_a{
+	color:#6e6e6e;
 }
 div.outer_frame {
 	position: absolute;
@@ -52,12 +62,12 @@ div.frame2 {
     right: 2%;
  }
  h1{
-	font-size: 22px;
+	font-size: 24px;
 	color: #757575;
 	margin-top: -25px;
 }
 p,table{
-	font-size: 13.81px;
+	font-size: 15px;
 	color:  #6e6e6e;
 }
 .fram_pos{
@@ -91,8 +101,9 @@ p,table{
 .button{
 	position:absolute;
 	bottom:-5%;
-	font-size: 14px;
-	padding: 5px 25px 5px 25px;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px 25px 10px 25px;
 	color: white;
 	background: #33CC00; 
 	border-color:#33CC00; 
@@ -104,7 +115,7 @@ p,table{
 	left:25%;
 }
 .button_pos_ryt{
-	right:10%;
+	right:5%;
 }
 .button_pos_ryt1{
 	right:25%;
@@ -128,9 +139,6 @@ p,table{
 	margin-top: 10px;
 	margin-left: -27px;
 }
-a{
-	text-decoration: none;
-}
-#tab2_a{
-	color:#6e6e6e;
+.row_align{
+	vertical-align:top;
 }
