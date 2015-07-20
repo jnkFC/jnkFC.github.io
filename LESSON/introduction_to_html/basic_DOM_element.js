@@ -64,11 +64,12 @@ function fav(){
 		document.getElementById("F_ball_opt").style.display="none";
 		document.getElementById("Movie_opt").style.display="inline";
 	}
-	else{
+	else if(document.getElementById("Reading").checked){
 		document.getElementById("Movie_opt").style.display="none";
 		document.getElementById("F_ball_opt").style.display="none";
 		document.getElementById("Reading_opt").style.display="inline";
 	}
+	else if(document.getElementById("Reading").uchecked)
 	
 	
 }

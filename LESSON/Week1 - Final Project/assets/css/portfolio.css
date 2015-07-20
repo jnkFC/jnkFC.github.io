@@ -1,0 +1,139 @@
+body{
+	font-family: fontawesome-webfont;
+}
+.container{
+	margin-top: 30px;
+	padding-top: 30px;
+}
+.fixed{
+	position: fixed;
+	top:0px;
+	left: 0px;
+	width: 40vh;
+	height: 100vw;
+	background-image: url("../../images/bg.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.avatar{
+	border-radius: 60px;
+	width:68px;
+	height:68px;
+}
+.img_div{
+	position:absolute;
+	top:8%;
+	right:10%;
+	padding: 5px;
+	text-align: right;
+}
+.link{
+	display: inline-block;
+	position: absolute;
+	bottom:45%;
+	right:5%;
+	padding: 5px;
+	margin: 0px;
+}
+.c_ryt{
+	position: absolute;
+	bottom:42%;
+	right:5%;
+	padding: 5px;
+}
+.right{
+	position: absolute;
+	width: 111vh;
+	height: 100%;
+	top: 0%;
+	left: 40vh;
+	display: block;
+	padding-top: 50px;
+}
+.about{
+	margin: auto;
+	margin-bottom: 30px;
+	width: 660px;
+    padding: 10px;
+    display: block;
+ }
+.button_attri{
+	width: 175px;
+    margin-top: 5px;
+    background:white;
+    border-width: 2px;
+    border-style: solid;
+    cursor: pointer;
+    border-color: #dddddd;
+    padding:1%;
+    font-size: 20px;
+    border-radius: 5px;
+    color:  #6e6e6e;
+}
+button:focus{
+	color: #359F6A;
+	border: 2px solid #359F6A;
+}
+.photo{
+   	margin: auto;
+   	margin-bottom: 30px;
+   	padding: 10px;
+    width: 660px;
+    border-radius: 5px;
+    display: block;
+}
+.p1 img{
+    height: 150px;
+    width: 300px;
+    top: 15px;
+    left:20px;
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 28px;
+    margin-bottom: 10px;
+    border:2px;
+    border-radius: 6px;
+}
+.p1 {
+	display:inline-block;
+}
+.git{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	padding: 10px;
+	width: 660px;
+}
+.inpt1{
+	display: inline-block;
+}
+.input_box{
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+	border: 1px solid #F2F2F2;
+	background-color:#F2F2F2;
+}
+.l_img{
+	width: 20px;
+	height: 20px;
+	padding: 10px;
+}
+p,a{
+	color: #717171;
+}
+h2,h3{
+	color:  #6e6e6e;
+}
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    width:640px;
+    border-width: 1px;
+} 

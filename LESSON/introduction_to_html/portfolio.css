@@ -1,0 +1,13 @@
+body{
+	background: url("bg.jpg");
+	 background-size: 1800px 900px;
+}
+.pos_fixed{
+	position: fixed;
+	padding: 100px 40px;
+ 	float: right;
+ 	background-image: url('image.jpg');
+	width: 35%;
+	height: 100%;
+
+}
