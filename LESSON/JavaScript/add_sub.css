@@ -1,0 +1,9 @@
+p {
+  margin-right: 30px;
+ padding: 50px;    
+ text-align: right;
+}
+input{
+	width: 50px;
+	direction: rtl;
+}
