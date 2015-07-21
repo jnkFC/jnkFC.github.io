@@ -1,57 +1,43 @@
-var textbx=[];
-var res=[];
 function div_create(q){
-	res.length=0;
-	var iDiv = document.createElement('div');	
-	iDiv.id = 'block';
-	iDiv.className = 'block';
-	document.getElementsByTagName('body')[0].appendChild(iDiv);
+	div_create.obj={};	
+	var form = document.createElement("div");	
+	form.id = 'add&sub';
+	form.className = 'add_sub';
+	document.getElementsByTagName('body')[0].appendChild(form);
 	for(i=0;i<20;i++){
-// creating and append to iDiv
-		var innerDiv = document.createElement('p');
-		innerDiv.id = 'block2'+i;
-    	innerDiv.setAttribute('style','width:50px');
-    	innerDiv.setAttribute('style','display:inline-block');
-    	innerDiv.style.margin = "8px";
-    	innerDiv.style.color="blue";
-	// The variable iDiv is still good... Just append to it.
-		iDiv.appendChild(innerDiv);
-		textbx.push(innerDiv.id);
-		if(q===1)
-			add(innerDiv.id);
-		else
-			sub(innerDiv.id);
-	}
-	function add(i){
+		var sum = document.createElement("p");
+		sum.id = "sum"+i;
+    	sum.setAttribute("style","display:inline-block");
+    	sum.setAttribute("style","width:50px");
+    	sum.style.margin = "8px";
+    	sum.style.color="blue";
+		form.appendChild(sum);
 		var x = Math.round(100*Math.random());
 		var y = Math.round(100*Math.random());
-		var z=x+y;
-		res.push(z);
-		document.getElementById(i).innerHTML =x+"</br>"+"+"+y+"</br>"+"<div><input name="+i+" onkeydown='shiftcursor(this)' onkeyup='check(this)' type=text></div>";
-	}
-	function sub(i){
-		var x = Math.round(100*Math.random());
-		var y = Math.round(100*Math.random());
-		var z=x-y;
-		res.push(z);
-		document.getElementById(i).innerHTML =x+"</br>"+"+"+y+"</br>"+"<div><input name="+i+" onkeydown='shiftcursor(this)' onkeyup='check(this)' type=text></div>";
-	}
-}
-function check(a){
-	for(var i=0;i<textbx.length;i++){
-		if(a.name===textbx[i]){
-			if(a.value==res[i]){
-				a.style.background="green";
-			}
-			else{
-				a.style.background="red";
-			}
-			break;
+	
+		if(q===1){
+			div_create.obj[sum.id]={"result":(x+y)};
+			document.getElementById(sum.id).innerHTML =x+"</br>"+"+"+y+"</br>"+"<div><input name="+sum.id+" onkeydown='shiftcursor(this)' onkeyup='check(this)' type=text></div>";
 		}
+		else{
+			div_create.obj[sum.id]={"result":(x-y)};
+			document.getElementById(sum.id).innerHTML =x+"</br>"+"-"+y+"</br>"+"<div><input name="+sum.id+" onkeydown='shiftcursor(this)' onkeyup='check(this)' type=text></div>";
+		}
+			
+	}
+	
+}
+function check(txtbx){
+	//console.log("C" + c);
+	if(div_create.obj[txtbx.name].result==txtbx.value){
+		txtbx.style.background="green";
+	}
+	else{
+		txtbx.style.background="red";
 	}
 }
-function shiftcursor(a){
-	if(a.setSelectionRange){
-		a.setSelectionRange(0,0);
+function shiftcursor(txtbx){
+	if(txtbx.setSelectionRange){
+		txtbx.setSelectionRange(0,0);
 	}
 }
