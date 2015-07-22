@@ -70,7 +70,7 @@ function special(value){
 	if (value=="MS") {
 		memory.push(document.getElementById("screen1").value);
 		opleft=-1;
-		objects.current=0;
+		objects.current=document.getElementById("screen1").value;
 		digits=0;
 	}
 	else if(value=="MC"){
