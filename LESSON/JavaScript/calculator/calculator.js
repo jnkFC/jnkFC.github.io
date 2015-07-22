@@ -69,7 +69,7 @@ function special(value){
 	special.index=1;
 	if (value=="MS") {
 		memory.push(document.getElementById("screen1").value);
-		opleft=0;
+		opleft=-1;
 		objects.current=0;
 		digits=0;
 	}
