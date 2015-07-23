@@ -1,0 +1,26 @@
+<!doctype html>
+<head>
+<script type="text/javascript" src="date_calculator.js"></script>
+<link rel="stylesheet" type="text/css" href="date_calculator.css">
+</head>
+<body>
+	<div class="model border">
+		<p class="heading border">Date And Time Difference Calculator</p>
+		<div id="inpt_box">
+			<input type="text" id="d1" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+			<input type="text" id="d2" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+			<input type="text" id="result" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+		</div>
+		<div id="menu1">
+			<input type="button" class="menu" value="Date" onclick="date()">
+			<input type="button" class="menu" value="Time" onclick="time()">
+			<input type="button" class="menu" value="Date Finder" onclick="interval()">
+		</div>
+	<!--	<div id="menu2">
+			<input type="button" class="time_menu"  value="12 Hr" onclick="time_12()">
+			<input type="button" class="time_menu"  value="24 Hr" onclick="time_24()">
+		</div>
+		
+-->
+	</div>
+</body>

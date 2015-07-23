@@ -32,22 +32,28 @@ function symbol(value){
 	else if(opleft==1)
 	{	if(value==="%"){
 			objects.number=parseInt(objects.number)+(objects.number.slice(-1))+(parseInt(objects.number))*(objects.current/100);
-				document.getElementById("screen1").value=eval(objects.number);
-				objects.current=document.getElementById("screen1").value;
-				opleft=-1;
+			document.getElementById("screen1").value=eval(objects.number);
+			objects.current=document.getElementById("screen1").value;
+			opleft=-1;
 		}
 		else{
-			objects.number+=objects.current;
-			document.getElementById("screen1").value=eval(objects.number);
-			objects.number=document.getElementById("screen1").value;
-			if(value==="="){
-				console.log("=");
-				objects.current=document.getElementById("screen1").value;
-				opleft=-1;
-			}
-			else{
+			if(objects.number.length==0){
 				objects.number+=value;
-				objects.current=0;
+			}
+			else
+			{
+				objects.number+=objects.current;
+				document.getElementById("screen1").value=eval(objects.number);
+				objects.number=document.getElementById("screen1").value;
+				if(value==="="){
+					console.log("=");
+					objects.current=document.getElementById("screen1").value;
+					opleft=-1;
+				}
+				else{
+					objects.number+=value;
+					objects.current=0;
+				}
 			}
 		}
 	}
