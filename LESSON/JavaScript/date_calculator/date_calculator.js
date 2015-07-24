@@ -156,15 +156,16 @@ function find(){
 		r=document.getElementById("r").value;
 		t=document.getElementById("t").value;
 		e=document.getElementById("e").value;
-		if (document.getElementById("p").value=="") {
+		r=r/(12*100);	
+		if (document.getElementById("p").value=="" || document.getElementById("p").value=="Loan Amount") {
 			p=eval( (e*( Math.pow((1+r),t) -1 ) ) / (r * Math.pow( (1+r),t ) ) );
 			document.getElementById("p").value=p;
 		}
-		else if(document.getElementById("e").value==""){
-			e=eval( ( p*r*( Math.pow( (1+r),t ) )) / ( Math.pow( (1+r),t) -1 ) );
+		else if(document.getElementById("e").value=="" ||document.getElementById("e").value==="E.M.I"){
+			e=eval( ( p*r*( Math.pow( (1+r),t ) )) / (( Math.pow( (1+r),t) )-1)  );
 			document.getElementById("e").value=e;
 		}
-		else if(document.getElementById("t").value==""){
+		else if(document.getElementById("t").value==""||document.getElementById("t").value=="Time Period"){
 			t=Math.log(e/(e-p*r))/Math.log(1+r);
 			document.getElementById("t").value=t;
 		}
