@@ -161,7 +161,7 @@ function find(){
 			document.getElementById("p").value=p;
 		}
 		else if(document.getElementById("e").value==""){
-			e=eval( ( p*r*( Math.pow( (1+r),t ) ) / ( Math.pow( (1+r),t) -1 ) ) );
+			e=eval( ( p*r*( Math.pow( (1+r),t ) )) / ( Math.pow( (1+r),t) -1 ) );
 			document.getElementById("e").value=e;
 		}
 		else if(document.getElementById("t").value==""){
