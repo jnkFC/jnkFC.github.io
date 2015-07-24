@@ -1,3 +1,36 @@
+#page{
+	position: relative;
+}
+#page ul {
+	position: fixed;
+	top:16%;
+	left:38%;
+
+}
+#page li {
+	display: inline;
+	color: #09569d;
+	border: solid;
+	border-bottom: none;
+	border-color:#dddddd;
+	border-width: 1px 1px 1px 1px;
+	border-radius: 4px;
+	margin: 0px 1px 0px 1px;
+	height: 40px;
+}
+.date_tab{
+	padding: 5px 25px 2px 25px;
+	font-size: 14px;
+	background-color: #e4efff;
+	z-index: 1;
+}
+.mort_tab{
+	padding:5px 25px 5px 25px;
+	font-size: 14px;
+	background-color: white;
+	z-index:1;
+
+}
 .model{
 	position: fixed;
 	top: 20%;
@@ -15,7 +48,7 @@
 	border: 5px solid lightgrey;
 	border-radius: 10px;
 }
-#inpt_box{
+.inpt_box{
 	position: absolute;
 	top:10%;
 	width:300px;
@@ -25,23 +58,34 @@
 	width: 298px;
 	height: 50px;
 }
-#menu1{
-	display: block;
+.menu_pos{
 	position: absolute;
-	top:45%;
+	top:50%;
 	width: 298px;
 	height: 50px;
 	border: 2px solid lightgrey;
 }
-.menu{
-	margin:auto;
+.menu_design{
 	margin-left: 8px;
 	margin-right: 8px;
 	width: 80px;
 	height: 50px;
+}
+#menu2{
+	display: block;
+	position: absolute;
+	top:65%;
+	width: 298px;
+	height: 50px;
+	border: 2px solid lightgrey;
 
 }
 .time_menu{
 	margin: auto;
 	width: 
+}
+.find{
+	position: absolute;
+	top:60%;
+	right:30%;
 }

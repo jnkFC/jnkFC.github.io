@@ -4,23 +4,45 @@
 <link rel="stylesheet" type="text/css" href="date_calculator.css">
 </head>
 <body>
-	<div class="model border">
-		<p class="heading border">Date And Time Difference Calculator</p>
-		<div id="inpt_box">
-			<input type="text" id="d1" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
-			<input type="text" id="d2" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
-			<input type="text" id="result" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+	<div id="page">
+		<ul>
+			<li id="tab1" class="date_tab" onclick="tab(1)"><a id="tab1_a" href="#">DATE/TIME</a></li>
+			<li id="tab2" class="mort_tab" onclick="tab(2)"><a id="tab2_a" href="#">MORTGAGE</a></li>
+		</ul>
+		<div id="date_time" class="model border" >
+			<p class="heading border">Date And Time Difference Calculator</p>
+			<div class="inpt_box">
+				<input type="text" id="d1" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+				<input type="text" id="d2" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+				<input type="text" id="result" class="input_field" value="" onfocus="inputFocus(this)" style="color:#888" >
+			</div>
+			<div class="menu_pos">
+				<input type="button" class="menu_design" value="Date" onclick="date()">
+				<input type="button" class="menu_design" value="Time" onclick="time()">
+				<input type="button" class="menu_design" value="Date Finder" onclick="interval()">
+			</div>
+			<div id="menu2">
+				<p><h3> HINTS</h3>
+					Date Format: mm/dd/yyyy </br>
+					Time Format: hh:mm hrs (24hr clock system)
+
+				</p>
+			</div>
 		</div>
-		<div id="menu1">
-			<input type="button" class="menu" value="Date" onclick="date()">
-			<input type="button" class="menu" value="Time" onclick="time()">
-			<input type="button" class="menu" value="Date Finder" onclick="interval()">
-		</div>
-	<!--	<div id="menu2">
-			<input type="button" class="time_menu"  value="12 Hr" onclick="time_12()">
-			<input type="button" class="time_menu"  value="24 Hr" onclick="time_24()">
+		<div id="mortgage" class="model border" style="visibility:hidden">
+			<p class="heading border">Mortgage Calculator</p>
+			<div class="inpt_box">
+				<input type="text" id="p" class="input_field" value="Loan Amount" onfocus="inputFocus(this)" style="color:#888" >
+				<input type="text" id="r" class="input_field" value="Rate Of Interest" onfocus="inputFocus(this)" style="color:#888" >
+				<input type="text" id="t" class="input_field" value="Time Period" onfocus="inputFocus(this)" style="color:#888" >
+				<input type="text" id="e" class="input_field" value="E.M.I " onfocus="inputFocus(this)" style="color:#888" >
+			</div>
+			<div class="find" >
+				<input type="button" class="menu_design" value="Find" onclick="find()">
+			</div>
 		</div>
 		
--->
-	</div>
+
+	
+</div>
 </body>
