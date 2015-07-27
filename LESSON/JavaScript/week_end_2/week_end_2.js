@@ -22,6 +22,7 @@
 
 		return element;
  	}	
+ 	
 	var form=create_element("div",document.body,{id:"form"},{position:"absolute",top:"0px",left:"0px",height:"100%",width:"100%",background:"#000000"},null,null);
 	var calculator=create_element("div",form,{id:"calculator"},{position:"fixed",top:"20%",left:"30%",height:"500px",width:"400px",background:"lightblue"},null,null);
 	(function create_radio(){
@@ -107,6 +108,8 @@
 
 
 	function basic_calculator(){
+		basic_calculator.number=" ";
+		basic_calculator.current=0;
 		var basic_calc=create_element("div",calculator,{id:"calc_body"},{position:"fixed",top:"30%",left:"40%",height:"330px",width:"250px",textAlign:"center",background:"#000000"},null,null);
 		css_class(null,"calc_body","calcbody",'{background-color:#000000;border: 2px solid #ffffff;border-radius:10px;color: #ffffff;}');
 		var p=create_element("p",basic_calc,null,null,null,null);
@@ -172,17 +175,16 @@
 		var digits=0;
 		var memory=[];
 		
-		function number(value){
+		function number(){
 			digits++;
-			console.log(objects.current);	
-			objects.current=objects.current*10+eval(value);console.log(objects.current);
-			document.getElementById("screen1").value=objects.current;	
+			basic_calculator.current=basic_calculator.current*10+eval(this.value);console.log(basic_calculator.current);
+			document.getElementById("screen1").value=basic_calculator.current;	
 			if (digits>1) {
 				opleft++;
 			}
 			opleft--;
 		}
-		function symbol(value){
+		function symbol(){
 			++opleft;
 			digits=0;
 			//for simultaneous 2nd operator
@@ -190,69 +192,69 @@
 				alert("Error!!");
 				document.getElementById("screen1").value=0;	
 				opleft=0;
-				objects.current=0;
+				basic_calculator.current=0;
 			}
 			//for second operator
 			else if(opleft==1)
-			{	if(value==="%"){
-					objects.number=parseInt(objects.number)+(objects.number.slice(-1))+(parseInt(objects.number))*(objects.current/100);
-					document.getElementById("screen1").value=eval(objects.number);
-					objects.current=document.getElementById("screen1").value;
+			{	if(this.value==="%"){
+					basic_calculator.number=parseInt(basic_calculator.number)+(basic_calculator.number.slice(-1))+(parseInt(basic_calculator.number))*(basic_calculator.current/100);
+					document.getElementById("screen1").value=eval(basic_calculator.number);
+					basic_calculator.current=document.getElementById("screen1").value;
 					opleft=-1;
 				}
 				else{
-					if(objects.number.length===0){
-						objects.number+=value;
+					if(basic_calculator.number.length===0){
+						basic_calculator.number+=this.value;
 					}
 					else
 					{
-						objects.number+=objects.current;
-						document.getElementById("screen1").value=eval(objects.number);
-						objects.number=document.getElementById("screen1").value;
-						if(value==="="){
+						basic_calculator.number+=basic_calculator.current;
+						document.getElementById("screen1").value=eval(basic_calculator.number);
+						basic_calculator.number=document.getElementById("screen1").value;
+						if(this.value==="="){
 							console.log("=");
-							objects.current=document.getElementById("screen1").value;
+							basic_calculator.current=document.getElementById("screen1").value;
 							opleft=-1;
 						}
 						else{
-							objects.number+=value;
-							objects.current=0;
+							basic_calculator.number+=this.value;
+							basic_calculator.current=0;
 						}
 					}
 				}
 			}
 			//for first operator
 			else if(opleft===0){
-				if(value==="%"){
-					objects.current/=100;
-					objects.number="";
+				if(this.value==="%"){
+					basic_calculator.current/=100;
+					basic_calculator.number="";
 				}
 				else{
-					objects.number=objects.current;
-					objects.number+=value;
+					basic_calculator.number=basic_calculator.current;
+					basic_calculator.number+=this.value;
 					opleft++;
-					objects.current=0;
+					basic_calculator.current=0;
 				}
 			}
 		}	
-		function special(value){
+		function special(){
 			special.index=1;
-			if (value=="MS") {
+			if (this.value=="MS") {
 				memory.push(document.getElementById("screen1").value);
 				opleft=-1;
-				objects.current=document.getElementById("screen1").value;
+				basic_calculator.current=document.getElementById("screen1").value;
 				digits=0;
 			}
-			else if(value=="MC"){
+			else if(this.value=="MC"){
 				memory=[];
 				special.index=1;
 				alert("Memory Cleared!!");
 				document.getElementById("screen1").value=0;	
 				opleft=0;
-				objects.current=0;
+				basic_calculator.current=0;
 				digits=0;
 			}
-			else if( value=="MR"){
+			else if( this.value=="MR"){
 				if(typeof memory[(memory.length)-special.index] === 'undefined'){
 					document.getElementById("screen1").value=0;
 				}
@@ -261,69 +263,69 @@
 					special.index++;
 				}
 			}
-			else if(value=="M+"){
+			else if(this.value=="M+"){
 				if(digits>0|| opleft>0){
 					alert("Error!!");
 					document.getElementById("screen1").value=0;	
 					opleft=0;
-					objects.current=0;
+					basic_calculator.current=0;
 					digits=0;
 				}
 				else{
-					objects.current=memory[(memory.length)-special.index];
-					document.getElementById("screen1").value=objects.current;
-					objects.number="";
-					objects.number+=objects.current+"+";
-					objects.current=0;
+					basic_calculator.current=memory[(memory.length)-special.index];
+					document.getElementById("screen1").value=basic_calculator.current;
+					basic_calculator.number="";
+					basic_calculator.number+=basic_calculator.current+"+";
+					basic_calculator.current=0;
 					opleft=1;
 					digits=0;
-					console.log(objects.number);
+					console.log(basic_calculator.number);
 				}
 			}
-			else if(value=="M-"){
+			else if(this.value=="M-"){
 				if(digits>0|| opleft>0){
 					alert("Error!!");
 					document.getElementById("screen1").value=0;	
 					opleft=0;
-					objects.current=0;
+					basic_calculator.current=0;
 					digits=0;
 				}
 				else{
-					objects.current=memory[(memory.length)-special.index];
-					document.getElementById("screen1").value=objects.current;
-					objects.number="";
-					objects.number+=objects.current+"-";
-					objects.current=0;
+					basic_calculator.current=memory[(memory.length)-special.index];
+					document.getElementById("screen1").value=basic_calculator.current;
+					basic_calculator.number="";
+					basic_calculator.number+=basic_calculator.current+"-";
+					basic_calculator.current=0;
 					opleft=1;
 					digits=0;
 				}
 			}
-			else if(value=="REM"){
+			else if(this.value=="REM"){
 				if(digits>0||opleft===0){
-					objects.number+=objects.current+"%";
-					objects.current=0;
+					basic_calculator.number+=basic_calculator.current+"%";
+					basic_calculator.current=0;
 					opleft++;
 				}
 				else{
 					alert("Error!!");
 					document.getElementById("screen1").value=0;	
 					opleft=0;
-					objects.current=0;
+					basic_calculator.current=0;
 					digits=0;
 				}
 			}
-			else if(value=="CLS"){
-				objects.current=0;
-				document.getElementById("screen1").value=objects.current;	
-				objects.number=" ";
+			else if(this.value=="CLS"){
+				basic_calculator.current=0;
+				document.getElementById("screen1").value=basic_calculator.current;	
+				basic_calculator.number=" ";
 				digits=0;
 				opleft=0;
 			}
-			else if(value=="CAN")
+			else if(this.value=="CAN")
 			{
 				if(digits>0){
-					objects.current=Math.floor(objects.current/10);
-					document.getElementById("screen1").value=objects.current;	
+					basic_calculator.current=Math.floor(basic_calculator.current/10);
+					document.getElementById("screen1").value=basic_calculator.current;	
 				}
 				else{
 					alert("Error!! CAN only works on Input value!!");
@@ -549,7 +551,4 @@
 		}
 	
 })();
-//var myElement = document.querySelector("#superman");
-//myElement.style.backgroundColor = "#D93600";
-
 
