@@ -49,7 +49,7 @@ function time(){
 	l1=val1.length;
 	val2=document.getElementById("d2").value;
 	l2=val2.length;
-	if(parseInt(val1.substring(0,2))>23 || parseInt(val1.substring(3,5))>59 || parseInt(val2.substring(0,2))>23 || parseInt(val2.substring(3,5))>59 || (val1.substring(5,7).toLowerCase())!="hrs" || (val2.substring(5,7).toLowerCase())!="hrs"){
+	if(parseInt(val1.substring(0,2))>23 || parseInt(val1.substring(3,5))>59 || parseInt(val2.substring(0,2))>23 || parseInt(val2.substring(3,5))>59 || (val1.substring(6,9).toLowerCase())!="hrs" || (val2.substring(6,9).toLowerCase())!="hrs"){
 	alert("Input is Not in the Correct Format Of Time (hr:mins hrs)  !!");
 	}
 	else{	
@@ -157,19 +157,19 @@ function find(){
 		t=document.getElementById("t").value;
 		e=document.getElementById("e").value;
 		r=r/(12*100);	
-		if (document.getElementById("p").value=="" || document.getElementById("p").value=="Loan Amount") {
+		if (document.getElementById("p").value==="" || document.getElementById("p").value=="Loan Amount") {
 			p=eval( (e*( Math.pow((1+r),t) -1 ) ) / (r * Math.pow( (1+r),t ) ) );
 			document.getElementById("p").value=p;
 		}
-		else if(document.getElementById("e").value=="" ||document.getElementById("e").value==="E.M.I"){
+		else if(document.getElementById("e").value==="" ||document.getElementById("e").value==="E.M.I"){
 			e=eval( ( p*r*( Math.pow( (1+r),t ) )) / (( Math.pow( (1+r),t) )-1)  );
 			document.getElementById("e").value=e;
 		}
-		else if(document.getElementById("t").value==""||document.getElementById("t").value=="Time Period"){
+		else if(document.getElementById("t").value===""||document.getElementById("t").value=="Time Period"){
 			t=Math.log(e/(e-p*r))/Math.log(1+r);
 			document.getElementById("t").value=t;
 		}
-		else if(document.getElementById("r").value==""){
+		else if(document.getElementById("r").value===""){
 
 		}
 		else{

@@ -28,7 +28,7 @@
 		for(j=0;j<3;j++){
 			var choice = create_element("input",form,{id:"choice"+j,type:"radio",name:"option"},{margin:"10px",padding:"10px"},{"click":show},null);
 			var lab= create_element("label",null,null,{color:"#FFFFFF",padding:"10px"},null,null);
-			if(j==0){
+			if(j===0){
 				lab.setAttribute("for","choice"+j);
 				lab.appendChild(document.createTextNode("Basic Calculator"));				
 			}
@@ -45,19 +45,44 @@
 		}
 	})();
 	function show(){
+		var myNode = document.getElementsByTagName("head");
 		if ( this.id== "choice0"){
+			
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}			
+			if(document.getElementById("mortgage"))
+				document.getElementById("calculator").removeChild(document.getElementById("mortgage"));
+			if(document.getElementById("dat_tim"))
+				document.getElementById("calculator").removeChild(document.getElementById("dat_tim"));
 			basic_calculator();
+
 		}
 		else if( this.id== "choice1"){
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}
+			if(document.getElementById("calc_body"))
+				document.getElementById("calculator").removeChild(document.getElementById("calc_body"));
+			if(document.getElementById("mortgage"))
+				document.getElementById("calculator").removeChild(document.getElementById("mortgage"));
 			date_time();
 		}
 		else {
+			while (myNode.firstChild) {
+    			myNode.removeChild(myNode.firstChild);
+			}
+			if(document.getElementById("calc_body"))
+				document.getElementById("calculator").removeChild(document.getElementById("calc_body"));
+			if(document.getElementById("dat_tim"))
+				document.getElementById("calculator").removeChild(document.getElementById("dat_tim"));
 			mortgage_calc();
 		}
 	}
 	function css_class(tag,id,class_name,styles){
 		if(styles!==null){
-			var style = document.createElement('style');
+			if(!(document.getElementsByTagName("head").firstChild)) 
+				var style = document.createElement('style');
 			style.type = 'text/css';
 			if(tag!==null){
 				style.innerHTML=tag+styles;
@@ -85,7 +110,7 @@
 		var basic_calc=create_element("div",calculator,{id:"calc_body"},{position:"fixed",top:"30%",left:"40%",height:"330px",width:"250px",textAlign:"center",background:"#000000"},null,null);
 		css_class(null,"calc_body","calcbody",'{background-color:#000000;border: 2px solid #ffffff;border-radius:10px;color: #ffffff;}');
 		var p=create_element("p",basic_calc,null,null,null,null);
-		css_class("p",null,null,'{width: 230px;margin: auto;margin-top:5px;margin-bottom: 10px;}')
+		css_class("p",null,null,'{width: 230px;margin: auto;margin-top:5px;margin-bottom: 10px;}');
 		var ioscreen=create_element("input",p,{id:"screen1",type:"text",value:"0"},{marginTop:"10px",marginBottom:"10px",marginRight:"2px",marginLeft:"2px",height:"40px",width:"210px",fontsize:"20px"},null,null);
 		css_class("input",null,null,'{background-color:#000000;border: 2px solid #ffffff;border-radius:10px;color: #ffffff;}');
 		p=create_element("p",basic_calc,null,null,null,null);
@@ -146,26 +171,18 @@
 		var opleft=0;
 		var digits=0;
 		var memory=[];
-		flag=0;
-		function number(){
-			if(flag<1){
-				(function objects(){
-					objects.number=" ";
-					objects.current=0;
-				})();
-			}
-			flag=1;
-
+		
+		function number(value){
 			digits++;
 			console.log(objects.current);	
-			objects.current=objects.current*10+eval(this.value);
+			objects.current=objects.current*10+eval(value);console.log(objects.current);
 			document.getElementById("screen1").value=objects.current;	
 			if (digits>1) {
 				opleft++;
 			}
 			opleft--;
 		}
-		function symbol(){
+		function symbol(value){
 			++opleft;
 			digits=0;
 			//for simultaneous 2nd operator
@@ -177,48 +194,56 @@
 			}
 			//for second operator
 			else if(opleft==1)
-			{	if(this.value==="%"){
+			{	if(value==="%"){
 					objects.number=parseInt(objects.number)+(objects.number.slice(-1))+(parseInt(objects.number))*(objects.current/100);
-						document.getElementById("screen1").value=eval(objects.number);
-						objects.current=document.getElementById("screen1").value;
-						opleft=-1;
+					document.getElementById("screen1").value=eval(objects.number);
+					objects.current=document.getElementById("screen1").value;
+					opleft=-1;
 				}
 				else{
-					objects.number+=objects.current;
-					document.getElementById("screen1").value=eval(objects.number);
-					objects.number=document.getElementById("screen1").value;
-					if(this.value==="="){
-						console.log("=");
-						objects.current=document.getElementById("screen1").value;
-						opleft=-1;
+					if(objects.number.length===0){
+						objects.number+=value;
 					}
-					else{
-						objects.number+=this.value;
-						objects.current=0;
+					else
+					{
+						objects.number+=objects.current;
+						document.getElementById("screen1").value=eval(objects.number);
+						objects.number=document.getElementById("screen1").value;
+						if(value==="="){
+							console.log("=");
+							objects.current=document.getElementById("screen1").value;
+							opleft=-1;
+						}
+						else{
+							objects.number+=value;
+							objects.current=0;
+						}
 					}
 				}
 			}
 			//for first operator
-			else if(opleft==0){
-				if(this.value==="%"){
+			else if(opleft===0){
+				if(value==="%"){
 					objects.current/=100;
 					objects.number="";
 				}
 				else{
 					objects.number=objects.current;
-					objects.number+=this.value;
+					objects.number+=value;
 					opleft++;
 					objects.current=0;
 				}
 			}
 		}	
-		function special(){
-			debugger;
+		function special(value){
 			special.index=1;
-			if (this.value=="MS") {
+			if (value=="MS") {
 				memory.push(document.getElementById("screen1").value);
+				opleft=-1;
+				objects.current=document.getElementById("screen1").value;
+				digits=0;
 			}
-			else if(this.value=="MC"){
+			else if(value=="MC"){
 				memory=[];
 				special.index=1;
 				alert("Memory Cleared!!");
@@ -227,7 +252,7 @@
 				objects.current=0;
 				digits=0;
 			}
-			else if( this.value=="MR"){
+			else if( value=="MR"){
 				if(typeof memory[(memory.length)-special.index] === 'undefined'){
 					document.getElementById("screen1").value=0;
 				}
@@ -236,7 +261,7 @@
 					special.index++;
 				}
 			}
-			else if(this.value=="M+"){
+			else if(value=="M+"){
 				if(digits>0|| opleft>0){
 					alert("Error!!");
 					document.getElementById("screen1").value=0;	
@@ -255,7 +280,7 @@
 					console.log(objects.number);
 				}
 			}
-			else if(this.value=="M-"){
+			else if(value=="M-"){
 				if(digits>0|| opleft>0){
 					alert("Error!!");
 					document.getElementById("screen1").value=0;	
@@ -273,7 +298,7 @@
 					digits=0;
 				}
 			}
-			else if(this.value=="REM"){
+			else if(value=="REM"){
 				if(digits>0||opleft===0){
 					objects.number+=objects.current+"%";
 					objects.current=0;
@@ -287,14 +312,14 @@
 					digits=0;
 				}
 			}
-			else if(this.value=="CLS"){
+			else if(value=="CLS"){
 				objects.current=0;
 				document.getElementById("screen1").value=objects.current;	
-				objects.number="";
+				objects.number=" ";
 				digits=0;
-				onleft=0;
+				opleft=0;
 			}
-			else if(this.value=="CAN")
+			else if(value=="CAN")
 			{
 				if(digits>0){
 					objects.current=Math.floor(objects.current/10);
@@ -323,7 +348,7 @@
 		io=create_element("input",inptbox,{id:"e",type:"text",value:"E.M.I."},null,{"focus":inputFocus(this)},null);
 		css_class(null,"r","input_field",null);
 		var find=create_element("input",mortgage,{id:"find",type:"button",value:"Find"},null,{"click":find},null);
-		css_class(null,"find","menu_design",'{display : block;position: absolute;top: 55%marginLeft: 8px; marginRight : 8px; width: 80px ; height: 50px;}');
+		css_class(null,"find","menu_design",'{display : block;position: absolute;top: 65%marginLeft: 8px; marginRight : 8px; width: 80px ; height: 50px;}');
 		
 		function inputFocus(i){
  		   //if(i.value==i.defaultValue){ i.value=""; i.style.color="#000"; }
@@ -351,19 +376,19 @@
 				t=document.getElementById("t").value;
 				e=document.getElementById("e").value;
 				r=r/(12*100);	
-				if (document.getElementById("p").value=="" || document.getElementById("p").value=="Loan Amount") {
+				if (document.getElementById("p").value==="" || document.getElementById("p").value=="Loan Amount") {
 					p=eval( (e*( Math.pow((1+r),t) -1 ) ) / (r * Math.pow( (1+r),t ) ) );
 					document.getElementById("p").value=p;
 				}
-				else if(document.getElementById("e").value=="" ||document.getElementById("e").value==="E.M.I"){
+				else if(document.getElementById("e").value==="" ||document.getElementById("e").value==="E.M.I"){
 					e=eval( ( p*r*( Math.pow( (1+r),t ) )) / (( Math.pow( (1+r),t) )-1)  );
 					document.getElementById("e").value=e;
 				}
-				else if(document.getElementById("t").value==""||document.getElementById("t").value=="Time Period"){
+				else if(document.getElementById("t").value===""||document.getElementById("t").value=="Time Period"){
 					t=Math.log(e/(e-p*r))/Math.log(1+r);
 					document.getElementById("t").value=t;
 				}
-				else if(document.getElementById("r").value==""){
+				else if(document.getElementById("r").value===""){
 
 				}
 				else{

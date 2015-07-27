@@ -37,7 +37,7 @@ function symbol(value){
 			opleft=-1;
 		}
 		else{
-			if(objects.number.length==0){
+			if(objects.number.length===0){
 				objects.number+=value;
 			}
 			else
@@ -58,7 +58,7 @@ function symbol(value){
 		}
 	}
 	//for first operator
-	else if(opleft==0){
+	else if(opleft===0){
 		if(value==="%"){
 			objects.current/=100;
 			objects.number="";
