@@ -11,7 +11,7 @@ function objects(){
 function number(value){
 	digits++;
 	console.log(objects.current);	
-	objects.current=objects.current*10+eval(value);
+	objects.current=objects.current*10+eval(value);console.log(objects.current);
 	document.getElementById("screen1").value=objects.current;	
 	if (digits>1) {
 		opleft++;
@@ -151,9 +151,9 @@ function special(value){
 	else if(value=="CLS"){
 		objects.current=0;
 		document.getElementById("screen1").value=objects.current;	
-		objects.number="";
+		objects.number=" ";
 		digits=0;
-		onleft=0;
+		opleft=0;
 	}
 	else if(value=="CAN")
 	{
