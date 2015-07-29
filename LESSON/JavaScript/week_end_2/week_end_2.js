@@ -409,9 +409,9 @@
 		css_class(null,"p","border",null);
 		var inptbox=create_element("div",dat_tim,{id:"inptbox"},{color:"white",position:"absolute",left:"10%"},null,null);
 		css_class(null,"inptbox","inpt_box",'{position:absolute;top: 10%;width: 300px;height: 150px;}');
-		var io=create_element("input",inptbox,{id:"d1",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
+		var io=create_element("input",inptbox,{id:"d1",type:"text",value:"Start Date/Time"},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"d1","input_field",'{display: block;width: 298px;height: 50px;color:#888;}');
-		io=create_element("input",inptbox,{id:"d2",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
+		io=create_element("input",inptbox,{id:"d2",type:"text",value:"End Date/Time"},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"d2","input_field",null);
 		io=create_element("input",inptbox,{id:"result",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"result","input_field",null);
