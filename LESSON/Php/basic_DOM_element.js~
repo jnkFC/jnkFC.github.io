@@ -20,7 +20,7 @@ function json(){
 	var interest=[];
 	var subscribe={};
 	subscribe.name=document.getElementById("name").value;
-	subscribe.country1=document.getElementById("country1").value;
+	subscribe.country=document.getElementById("country").value;
 	subscribe.email=document.getElementById("email_id").value;
 	subscribe.address=document.getElementById("address").value;
 	if(document.getElementById('male').checked)
@@ -37,16 +37,16 @@ function json(){
 	console.log(subscribe);
 }
 function opt(){
-	if(document.getElementById("country1").options[0].selected){
-		document.getElementById("country1").options[0].disabled=true;
-		document.getElementById("country1").options[1].disabled=false;
+	if(document.getElementById("country").options[0].selected){
+		document.getElementById("country").options[0].disabled=true;
+		document.getElementById("country").options[1].disabled=false;
 		document.getElementById("state1").style.visibility="visible";
 		document.getElementById("state2").style.visibility="hidden";
 
 	}
 	else{
-		document.getElementById("country1").options[0].disabled=false;
-		document.getElementById("country1").options[1].disabled=true;
+		document.getElementById("country").options[0].disabled=false;
+		document.getElementById("country").options[1].disabled=true;
 		document.getElementById("state1").style.visibility="hidden";
 		document.getElementById("state2").style.visibility="visible";	
 	}

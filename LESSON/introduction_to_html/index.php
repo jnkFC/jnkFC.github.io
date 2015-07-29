@@ -7,84 +7,62 @@
 	 if (isset($_POST['SUBSCRIBE'])) {
    echo "<script type='text/javascript'>tab(2);</script>";
 }
-	$nameErr = $emailErr = $countryErr = $stateErr = $phn_noErr= $genderErr="";
-	$name = $email = $country = $state = $phn_no= $gender= $interest= $sucMessage= "";
+	$nameErr = $emailErr = $countryErr = $stateErr = $phn_noErr= $sex="";
+	$name = $email = $country = $state = $phn_no= $sexErr= $sucMessage= "";
 	$success=1;
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		if (empty($_POST["name"])) {
+	  if (empty($_POST["name"])) {
 	    $nameErr = "Name is required";
 	    $success=0;
-		} else {
-		$name = ($_POST["name"]);
-	    }
-	  	if (empty($_POST["country"])) {
+	  } else {
+	    $name = ($_POST["name"]);
+	    $success=0;
+	  }
+	  if (empty($_POST["country"])) {
 	    $countryErr = "Select Country";
 	    $success=0;
-	  	} else {	  		
+	  } else {
 	    $country = ($_POST["country"]);
-	  	}
+	  }
 	    if (empty($_POST["email"])) {
 	    $emailErr = "Email is required";
 	    $success=0;
-	  	} else if (!filter_var(($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
+	  } else if (!filter_var(($_POST["email"]), FILTER_VALIDATE_EMAIL)) {
   		$emailErr = "Invalid email format";
   		$success=0;
 		}
-		else{			
+		else{
 			$email=$_POST["email"];
 		}
-		if (empty($_POST["state"])) {
+	  if (empty($_POST["state"])) {
 	    $stateErr = "Select A State";
 	    $success=0;
-	  	} else {	  				
+	  } else {
 	    $state = ($_POST["state"]);
-	  	}
-	  	if (empty($_POST["sex"])) {
+	  }
+	  if (empty($_POST["sex"])) {
 	    $genderErr = "Gender is required";
 	    $success=0;
-	  	} else {
-	  	    $gender = ($_POST["sex"]);
-	  	}
-	  	if (empty($_POST["phn_no"])) {
+	  } else {
+	    $gender = ($_POST["sex"]);
+	  }
+	  if (empty($_POST["phn_no"])) {
 	    $phn_noErr = "Phone no. is required";
 	    $success=0;
-	  	} else if(strlen($_POST["phn_no"]) !=10){
+	  } else if(strlen($_POST["phn_no"]) !=10){
 	  	$phn_noErr = "Only 10 digit number";
 	  	$success=0;
-	  	}else{
+	  }else{
 	    $phn_no =($_POST["phn_no"]);
-
-	  	}
-	  	if($success == 1){
-			$sucMessage="Subscription Successful!!";
-	  		$data = "$name, $email,$country, $state, $gender, $interest, $phn_no \n";
-			$myf = fopen("/home/jiteshnk/jnkFC.github.io/LESSON/Php/details.csv", "a");
-			fwrite($myf, $data);
-			fclose($myf);
-			$servername = "localhost";
-			$username = "root";
-			$password = "";
-			$dbname = "subscriber";
-		 	
-	  	// Create connection
-			$conn = mysqli_connect($servername, $username, $password, $dbname);
-			// Check connection
-			if (!$conn) {
-			    die("Connection failed: " . mysqli_connect_error());
-			}
-
-			$sql = "INSERT INTO detail (name,email,gender,phn_no,country,state)
-			VALUES ('$name', '$email', '$gender', '$phn_no', '$country', '$state')";
-
-			if (mysqli_query($conn, $sql)) {
-			    echo "New record created successfully";
-			} else {
-			    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-			}
-
-			mysqli_close($conn);
-	    }
+	  }
+	  if($success == 1){
+	  	$sucMessage="Subscription Successful!!";
+	    $data = "$name, $email, $country, $gender, $phn_no \n";
+	  	$myf = fopen("/home/jiteshnk/jnkFC.github.io/LESSON/introduction_to_html/details.csv","a");
+	  	fwrite($myf, $data);
+	  	fclose($myf);
+	  }
 	}
 	?>
 </head>
@@ -117,25 +95,25 @@
     						<td>Name </td>
     						<td><input  id="name" class="inpt_box" type="text" spellcheck="true" name="name" value="<?php echo $name ?>"><span class="error">* <?php echo $nameErr;?></span></td>
     						<td>Country: </td>
-    						<td><select onclick="opt()" id="country1" class="inpt_box" name="country" >
-	  								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?>>INDIA</option>
-								  	<option  value="U.S.A" <?php if (isset($country) && $country=="U.S.A") echo "selected";?> >U.S.A</option>
+    						<td><select onclick="opt()" id="country" class="inpt_box" name="country" >
+	  								<option value="INDIA">INDIA</option>
+								  	<option  value="U.S.A">U.S.A</option>
 								</select>
 								
 							</td>
-							<span class="error">* <?php echo $countryErr;?></span> 
+							<span class="error">* <?php echo $countryErr;?></span>
     					</tr>
     					<tr>
     						<td>Email </td>
     						<td><input class="inpt_box" type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" value="<?php echo $email ?>"><span class="error">* <?php echo $emailErr;?></span></td>
     						<td id="state1_name" >State</td>
     						<td><select id="state1" class="inpt_box" name="state">
-	  								<option value="J & K" <?php if (isset($state) && $state=="J & K") echo "selected";?> >J & K</option>
-								  	<option value="RAJASTHAN" <?php if (isset($state) && $state=="RAJASTHAN") echo "selected";?> >Rajasthan</option>
+	  								<option value="J & K">J & K</option>
+								  	<option value="RAJASTHAN">Rajasthan</option>
 								</select>
 								<select  style="visibility: hidden" id="state2" class="inpt_box" name="state">
-	  								<option value="New York" <?php if (isset($state) && $state=="New York") echo "selected";?>>New York</option>
-								  	<option value="San Francisco" <?php if (isset($state) && $state=="San Francisco") echo "selected";?> >San Francisco</option>
+	  								<option value="New York">New York</option>
+								  	<option value="San Francisco">San Francisco</option>
 								</select>
 								
 							</td>
@@ -143,11 +121,11 @@
     					</tr>
     					<tr>
     						<td>SEX</td>
-    						<td><input type="radio" name="sex" id="male" value="male" <?php if (isset($gender) && $gender=="male") echo "checked";?> >
+    						<td><input type="radio" name="sex" id="male" value="male">
     							<label for="male">Male</label>
-    							<input type="radio" name="sex" id="female" value="female" <?php if (isset($gender) && $gender=="female") echo "checked";?> >
+    							<input type="radio" name="sex" id="female" value="female">
     							<label for="female">Female</label>
-    							<span class="error">* <?php echo $genderErr;?></span>
+    							<span class="error">* <?php echo $sexErr;?></span>
   							</td>
   							<td>Phone No.:</td>
     						<td><input  id="phn" class="inpt_box" type="text" name="phn_no" value="<?php echo $phn_no ?>">
