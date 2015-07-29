@@ -4,13 +4,13 @@
 <link rel="stylesheet" type="text/css" href="basic_css.css">
 <script type="text/javascript" src="basic_DOM_element.js"></script>
 <?php
-	 if (isset($_POST['SUBSCRIBE'])) {
-   echo "<script type='text/javascript'>tab(2);</script>";
-}
-	$nameErr = $emailErr = $countryErr = $stateErr = $phn_noErr= $genderErr="";
-	$name = $email = $country = $state = $phn_no= $gender= $interest= $sucMessage= "";
-	$success=1;
+//	var_dump($_POST);
+	//die();
 
+	$nameErr = $emailErr = $countryErr = $stateErr = $phn_noErr= $interestErr =$genderErr=$MovieErr=$ReadingErr=$F_ballErr="";
+	$name = $email = $country = $state = $phn_no= $gender= $interest= $sucMessage= $Movie=$Reading=$F_ball= "";
+	$success=1;
+print_r($_POST);
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		if (empty($_POST["name"])) {
 	    $nameErr = "Name is required";
@@ -22,7 +22,7 @@
 	    $countryErr = "Select Country";
 	    $success=0;
 	  	} else {	  		
-	    $country = ($_POST["country"]);
+	    $countr = ($_POST["country"]);
 	  	}
 	    if (empty($_POST["email"])) {
 	    $emailErr = "Email is required";
@@ -54,8 +54,31 @@
 	  	$success=0;
 	  	}else{
 	    $phn_no =($_POST["phn_no"]);
-
 	  	}
+	  	if (empty($_POST["interest"])){
+	  		$success=0;
+	  		$interestErr = "Interest is required";
+	  	} else {
+	  		$interest = $_POST["interest"];
+	  	}
+		if (empty($_POST["F_ball"])) {
+       	 $success=0;
+	     $F_ballErr = "Interest is required";
+	   } else {
+    	 $F_ball = $_POST["F_ball"];
+	   }
+	if (empty($_POST["Movie"])) {
+       	 $success=0;
+	     $MovieErr = "Interest is required";
+	   } else {
+    	 $Movie = $_POST["Movie"];
+	   }
+	if (empty($_POST["Reading"])) {
+       	 $success=0;
+	     $ReadingErr = "Interest is required";
+	   } else {
+    	 $Reading = $_POST["Movie"];
+	   }
 	  	if($success == 1){
 			$sucMessage="Subscription Successful!!";
 	  		$data = "$name, $email,$country, $state, $gender, $interest, $phn_no \n";
@@ -81,6 +104,17 @@
 			    echo "New record created successfully";
 			} else {
 			    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+			}
+			for($i=0;$i<count($interest);$i++)
+			{
+				$pql = "INSERT INTO interest (email,interest)
+				VALUES ('$email','$interest[$i]')";
+				if (mysqli_query($conn, $pql)) {
+				    echo "New record created successfully";
+				} else {
+				    echo "Error: " . $pql . "<br>" . mysqli_error($conn);
+				}
+
 			}
 
 			mysqli_close($conn);
@@ -118,8 +152,8 @@
     						<td><input  id="name" class="inpt_box" type="text" spellcheck="true" name="name" value="<?php echo $name ?>"><span class="error">* <?php echo $nameErr;?></span></td>
     						<td>Country: </td>
     						<td><select onclick="opt()" id="country1" class="inpt_box" name="country" >
-	  								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?>>INDIA</option>
-								  	<option  value="U.S.A" <?php if (isset($country) && $country=="U.S.A") echo "selected";?> >U.S.A</option>
+								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?>>INDIA</option>
+								<option  value="U.S.A" <?php if (isset($country) && $country=="U.S.A") echo "selected";?> >U.S.A</option>
 								</select>
 								
 							</td>
@@ -155,23 +189,23 @@
   						</tr>
   						<tr>
   							<td>Interest</td>
-  							<td><input id="F_ball" onclick="fav()" type="checkbox" name="interest" value="Football">Football
-  								<input id="Movie"  onclick="fav()" type="checkbox" name="interest" value="Movie">Movie
-  								<input id="Reading" onclick="fav()" type="checkbox" name="interest" value="Reading">Reading  
+  							<td><input id="F_ball" onclick="fav()" type="checkbox" name="interest[]" value="Football">Football
+  								<input id="Movie"  onclick="fav()" type="checkbox" name="interest[]" value="Movie">Movie
+  								<input id="Reading" onclick="fav()" type="checkbox" name="interest[]" value="Reading">Reading  
   							</td></td>
   						</tr>
   					</table>
-  					<div id="F_ball_opt" class="check_opt">Which is your Favourite Team??</br><input  type="checkbox" name="F_ball" value="Brazil">Brazil
-  								<input type="checkbox" name="F_ball" value="Argentina">Argentina
-  								<input type="checkbox" name="F_ball" value="Germany">Germany</div>
+  					<div id="F_ball_opt" class="check_opt">Which is your Favourite Team??</br><input  type="checkbox" name="F_ball[]" value="Brazil">Brazil
+  								<input type="checkbox" name="F_ball[]" value="Argentina">Argentina
+  								<input type="checkbox" name="F_ball[]" value="Germany">Germany</div>
   					<div id="Movie_opt" class="check_opt">What type of mocies do you like ??</br>
-  							<input type="checkbox" name="Movie" value="Romantic">Brazil
-  							<input type="checkbox" name="Movie" value="Horror">Horror
-  							<input type="checkbox" name="Movie" value="Action">Action</div>
+  							<input type="checkbox" name="Movie[]" value="Romantic">Brazil
+  							<input type="checkbox" name="Movie[]" value="Horror">Horror
+  							<input type="checkbox" name="Movie[]" value="Action">Action</div>
   					<div id="Reading_opt" class="check_opt">What do you like ro read??</br>
-  							<input  type="checkbox" name="Reading" value="Blogs">Blogs
-  							<input type="checkbox" name="Reading" value="Novel">Novel
-  							<input type="checkbox" name="Reading" value="Short Stories">Short Stories</div>
+  							<input  type="checkbox" name="Reading[]" value="Blogs">Blogs
+  							<input type="checkbox" name="Reading[]" value="Novel">Novel
+  							<input type="checkbox" name="Reading[]" value="Short Stories">Short Stories</div>
 					<input type="submit" name="SUBSCRIBE" class="button button_pos_ryt">
 					<button type="reset" value="Reset" class="button button_pos_ryt1">RESET</button>
 					

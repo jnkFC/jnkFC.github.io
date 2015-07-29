@@ -38,15 +38,11 @@ function json(){
 }
 function opt(){
 	if(document.getElementById("country1").options[0].selected){
-		document.getElementById("country1").options[0].disabled=true;
-		document.getElementById("country1").options[1].disabled=false;
 		document.getElementById("state1").style.visibility="visible";
 		document.getElementById("state2").style.visibility="hidden";
 
 	}
 	else{
-		document.getElementById("country1").options[0].disabled=false;
-		document.getElementById("country1").options[1].disabled=true;
 		document.getElementById("state1").style.visibility="hidden";
 		document.getElementById("state2").style.visibility="visible";	
 	}

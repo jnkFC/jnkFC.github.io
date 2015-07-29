@@ -407,21 +407,21 @@
 		var p=create_element("p",dat_tim,{id:"p"},null,null,"Date And Time Difference Calculator");
 		css_class(null,"p","heading",'{position:absolute;top: 0%;left: 0%;width: 295px;}');
 		css_class(null,"p","border",null);
-		var inptbox=create_element("div",dat_tim,{id:"inptbox"},null,null,null);
+		var inptbox=create_element("div",dat_tim,{id:"inptbox"},{color:"white",position:"absolute",left:"10%"},null,null);
 		css_class(null,"inptbox","inpt_box",'{position:absolute;top: 10%;width: 300px;height: 150px;}');
-		var io=create_element("input",inptbox,{id:"d1",type:"text",value:""},null,{"focus":inputFocus(this)},null);
+		var io=create_element("input",inptbox,{id:"d1",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"d1","input_field",'{display: block;width: 298px;height: 50px;color:#888;}');
-		io=create_element("input",inptbox,{id:"d2",type:"text",value:""},null,{"focus":inputFocus(this)},null);
+		io=create_element("input",inptbox,{id:"d2",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"d2","input_field",null);
-		io=create_element("input",inptbox,{id:"result",type:"text",value:""},null,{"focus":inputFocus(this)},null);
+		io=create_element("input",inptbox,{id:"result",type:"text",value:""},{background:"white",margin:"3px"},{"focus":inputFocus(this)},null);
 		css_class(null,"result","input_field",null);
 		var menu=create_element("div",dat_tim,{id:"menupos"},null,null,null);
 		css_class(null,"menupos","menu_design",'{position:absolute;top: 45%;margin-left: 8px;margin-right: 8px;width: 80px;height: 50px;}');
-		io=create_element("input",menu,{id:"date",type:"button",value:"Date"},null,{"click":date},null);
+		io=create_element("input",menu,{id:"date",type:"button",value:"Date"},{position:"absolute",left:"150%"},{"click":date},null);
 		css_class(null,"date","menu_design",null);
-		io=create_element("input",menu,{id:"time",type:"button",value:"Time"},null,{"click":time},null);
+		io=create_element("input",menu,{id:"time",type:"button",value:"Time"},{position:"absolute",left:"300%"},{"click":time},null);
 		css_class(null,"time","menu_design",null);
-		io=create_element("input",menu,{id:"d_finder",type:"button",value:"Date Finder"},null,{"click":interval},null);
+		io=create_element("input",menu,{id:"d_finder",type:"button",value:"Date Finder"},{position:"absolute",left:"10%"},{"click":interval},null);
 		css_class(null,"d_finder","menu_design",null);
 		var menu2=create_element("div",dat_tim,{id:"menu2"},null,null,null);
 		css_class(null,"menu2","menu2",'{position:absolute;top: 65%;width: 298px;height: 50px;border: 2px solid lightgrey;}');
@@ -438,7 +438,6 @@
 			var date1 = new Date(document.getElementById("d1").value);
 			var date2 = new Date(document.getElementById("d2").value);
 			var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-			console.log(timeDiff+" "+timeDiff);
 			var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 			if(diffDays>365){
 				diff=Math.ceil(diffDays/365)+" years ";
@@ -478,7 +477,6 @@
 						min=parseInt(time1.substring(3,5))-(parseInt(time2.substring(3,5)));
 						hr=parseInt(time1.substring(0,2))-(parseInt(time2.substring(0,2)));
 					}
-					console.log(parseInt(time1.substring(3,5))+" "+parseInt(time1.substring(0,2)));
 					document.getElementById("result").value=(hr+":"+min+" hr");
 				}
 			}
@@ -488,12 +486,9 @@
 				val1=document.getElementById("d1").value;
 				var start_dt=new Date(val1.substring(0,(val1.indexOf(" ")))); 
 				start_dt=start_dt.getTime();
-				console.log(start_dt);
 				hrs1=val1.substring((val1.indexOf(" ")+1),(val1.indexOf(":")) );
 				mins1=val1.substring((val1.indexOf(":")+1),(val1.indexOf("hrs")-1));
 				start_dt+=(eval(hrs1*60*60*1000)+eval(mins1*60*100));
-				console.log("date "+val1.substring(0,(val1.indexOf(" "))));
-				console.log("hrs :"+hrs1+" min"+mins1);
 				val2=document.getElementById("d2").value;
 				if(val2.indexOf("days")>1){
 					if(val1.indexOf("/")===-1){
@@ -501,10 +496,9 @@
 					}
 					v2_days=eval(val2.substring(0,(val2.indexOf("days"))-1));
 					d=1;
-						console.log(res_date);
+						
 						res_date=res_date+eval(v2_days*24*60*60*1000);
-						console.log("day:"+eval(v2_days*24*60*60*1000));
-
+						
 				}
 				if(val2.indexOf("hrs")>1){
 					if(val1.indexOf("/")===-1 && val1.indexOf("hrs")===-1){
@@ -517,9 +511,9 @@
 						v2_hrs=eval(val2.substring(0,(val2.indexOf("hrs"))-1));
 					}
 					h=1;
-					console.log(res_date);
+				
 					res_date=res_date+eval(v2_hrs*60*60*1000);
-					console.log("hrs:"+eval(v2_hrs*60*60*1000));
+					
 					
 				}
 				if(val2.indexOf("mins")>1){
@@ -536,14 +530,11 @@
 						v2_mins=eval(val2.substring(0,(val2.indexOf("mins"))-1));
 					}
 					m=1;
-					console.log(res_date);
+					
 					res_date=res_date+eval(v2_mins*60*1000);
-					console.log("min "+eval(v2_mins*60*1000));
-					console.log(res_date);
 				}
-				console.log(start_dt);
+				
 				res_date=res_date+start_dt;
-				console.log(res_date);
 				result.setTime(res_date);
 				document.getElementById("result").value=result;
 			}
