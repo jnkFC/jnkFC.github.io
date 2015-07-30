@@ -1,5 +1,6 @@
 <html>
 <head>
+	
 </head>
 <body>
 	<?php 
@@ -15,6 +16,12 @@
 			    die("Connection failed: " . mysqli_connect_error());
 			}
 		?>
+		<?php 
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$order = "UPDATE detail SET name='$_POST[name]', email='$_POST[email]', country='$_POST[country]', phn_no=$_POST[phn_no], gender='$_POST[gender]' WHERE email='$_POST[email]' ";
+	     mysqli_query($conn,$order);
+	 }
+	?>
 	<table border=1>
 		<tr>
 		  	<td align=center>Edit Data</td>
@@ -22,12 +29,16 @@
 	  	<tr>
 		  	<td>
 		    	<table> <?php
-		    	$email=$_GET["email"];
+		    	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		    		$email=$_POST["email"];
+		    	}
+		    	else
+		    		$email=$_GET["email"];
 		    	$order = "SELECT * FROM detail where email='$email' ";
 				$result = mysqli_query($conn,$order);
 	      		$row = mysqli_fetch_array($result);
 	      		?>
-	      		<form method="post" action="editdb.php">
+	      		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	      		
 	      		<tr>
 	      			<td>Name</td>
@@ -75,5 +86,6 @@
 	  		</td>
 		</tr>
 	</table>
+
 </body>
 </html>
