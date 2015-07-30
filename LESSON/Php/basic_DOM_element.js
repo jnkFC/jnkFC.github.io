@@ -37,6 +37,7 @@ function json(){
 	console.log(subscribe);
 }
 function opt(){
+	debugger;
 	if(document.getElementById("country1").options[0].selected){
 		document.getElementById("state1").style.visibility="visible";
 		document.getElementById("state2").style.visibility="hidden";

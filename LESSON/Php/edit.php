@@ -27,7 +27,7 @@
 				$result = mysqli_query($conn,$order);
 	      		$row = mysqli_fetch_array($result);
 	      		?>
-	      		<form method="post" action="edit_data.php">
+	      		<form method="post" action="editdb.php">
 	      		
 	      		<tr>
 	      			<td>Name</td>

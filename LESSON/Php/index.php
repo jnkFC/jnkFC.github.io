@@ -22,7 +22,7 @@ print_r($_POST);
 	    $countryErr = "Select Country";
 	    $success=0;
 	  	} else {	  		
-	    $countr = ($_POST["country"]);
+	    $country = ($_POST["country"]);
 	  	}
 	    if (empty($_POST["email"])) {
 	    $emailErr = "Email is required";
@@ -143,8 +143,8 @@ print_r($_POST);
     						<td><input  id="name" class="inpt_box" type="text" spellcheck="true" name="name" value="<?php echo $name ?>"><span class="error">* <?php echo $nameErr;?></span></td>
     						<td>Country: </td>
     						<td><select onclick="opt()" id="country1" class="inpt_box" name="country" >
-								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?> >INDIA</option>
-								<option  value="U.S.A" <?php if (isset($country) && $country=="U.S.A") echo "selected";?> >U.S.A</option>
+								<option  <?php if (isset($country) && $country=="INDIA") echo "selected";?> value="INDIA">INDIA</option>
+								<option   <?php if (isset($country) && $country=="U.S.A") echo "selected";?> value="U.S.A">U.S.A</option>
 								</select>
 								
 							</td>
@@ -158,11 +158,14 @@ print_r($_POST);
 	  								<option value="J & K" <?php if (isset($state) && $state=="J & K") echo "selected";?> >J & K</option>
 								  	<option value="RAJASTHAN" <?php if (isset($state) && $state=="RAJASTHAN") echo "selected";?> >Rajasthan</option>
 								</select>
+
 								<select  style="visibility: hidden" id="state2" class="inpt_box" name="state">
 	  								<option value="New York" <?php if (isset($state) && $state=="New York") echo "selected";?>>New York</option>
 								  	<option value="San Francisco" <?php if (isset($state) && $state=="San Francisco") echo "selected";?> >San Francisco</option>
 								</select>
-								
+								<?php if($country=="INDIA"||$country=="U.S.A")
+                                 echo "<script>opt()</script>";
+								?>
 							</td>
 							<span class="error">* <?php echo $stateErr;?></span>
     					</tr>
