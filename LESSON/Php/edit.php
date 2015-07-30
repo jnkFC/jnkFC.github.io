@@ -14,9 +14,7 @@
 			if (!$conn) {
 			    die("Connection failed: " . mysqli_connect_error());
 			}
-			echo $email;
 		?>
-
 	<table border=1>
 		<tr>
 		  	<td align=center>Edit Data</td>
@@ -24,11 +22,13 @@
 	  	<tr>
 		  	<td>
 		    	<table> <?php
-	   		    $order = "SELECT * FROM detail where email='$email' ";
+		    	$email=$_GET["email"];
+		    	$order = "SELECT * FROM detail where email='$email' ";
 				$result = mysqli_query($conn,$order);
 	      		$row = mysqli_fetch_array($result);
 	      		?>
 	      		<form method="post" action="edit_data.php">
+	      		
 	      		<tr>
 	      			<td>Name</td>
 	          		<td>

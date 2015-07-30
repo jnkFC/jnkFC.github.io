@@ -143,7 +143,7 @@ print_r($_POST);
     						<td><input  id="name" class="inpt_box" type="text" spellcheck="true" name="name" value="<?php echo $name ?>"><span class="error">* <?php echo $nameErr;?></span></td>
     						<td>Country: </td>
     						<td><select onclick="opt()" id="country1" class="inpt_box" name="country" >
-								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?>>INDIA</option>
+								<option value="INDIA" <?php if (isset($country) && $country=="INDIA") echo "selected";?> >INDIA</option>
 								<option  value="U.S.A" <?php if (isset($country) && $country=="U.S.A") echo "selected";?> >U.S.A</option>
 								</select>
 								
