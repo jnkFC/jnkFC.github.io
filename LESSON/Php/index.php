@@ -61,25 +61,26 @@ print_r($_POST);
 	  	} else {
 	  		$interest = $_POST["interest"];
 	  	}
-		if (empty($_POST["F_ball"])) {
-       	 $success=0;
-	     $F_ballErr = "Interest is required";
-	   } else {
-    	 $F_ball = $_POST["F_ball"];
-	   }
-	if (empty($_POST["Movie"])) {
-       	 $success=0;
-	     $MovieErr = "Interest is required";
-	   } else {
-    	 $Movie = $_POST["Movie"];
-	   }
-	if (empty($_POST["Reading"])) {
-       	 $success=0;
-	     $ReadingErr = "Interest is required";
-	   } else {
-    	 $Reading = $_POST["Movie"];
-	   }
+	  	if (empty($_POST["F_ball"])){
+	  		$success=0;
+	  		$F_ballErr = "Interest is required";
+	  	} else {
+	  		$F_ball = $_POST["F_ball"];
+	  	}
+	  	if (empty($_POST["Movie"])) {
+	  		$success=0;
+	  		$MovieErr = "Interest is required";
+	  	} else {
+	  		$Movie = $_POST["Movie"];
+	  	}
+	  	if (empty($_POST["Reading"])) {
+	  		$success=0;
+	  		$ReadingErr = "Interest is required";
+	  	} else {
+	  		$Reading = $_POST["Movie"];
+	  	}
 	  	if($success == 1){
+	  		echo "success";
 			$sucMessage="Subscription Successful!!";
 	  		$data = "$name, $email,$country, $state, $gender, $interest, $phn_no \n";
 			$myf = fopen("/home/jiteshnk/jnkFC.github.io/LESSON/Php/details.csv", "a");
@@ -97,26 +98,16 @@ print_r($_POST);
 			    die("Connection failed: " . mysqli_connect_error());
 			}
 
-			$sql = "INSERT INTO detail (name,email,gender,phn_no,country,state)
-			VALUES ('$name', '$email', '$gender', '$phn_no', '$country', '$state')";
-
-			if (mysqli_query($conn, $sql)) {
-			    echo "New record created successfully";
-			} else {
+			$sql1 = "INSERT INTO detail (name,email,gender,phn_no,country,state) VALUES ('$name', '$email', '$gender', '$phn_no', '$country', '$state')";
+			$sql2 = "INSERT INTO interest (email,football,movie,reading) VALUES ('$email', '$interest[0]','$interest[1]','$interest[2]')";
+			if (mysqli_query($conn, $sql1)) {
+						echo "New record created successfully";
+				} else {
 			    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 			}
-			for($i=0;$i<count($interest);$i++)
-			{
-				$pql = "INSERT INTO interest (email,interest)
-				VALUES ('$email','$interest[$i]')";
-				if (mysqli_query($conn, $pql)) {
-				    echo "New record created successfully";
-				} else {
-				    echo "Error: " . $pql . "<br>" . mysqli_error($conn);
-				}
-
+			if(mysqli_query($conn, $sql2)){
+				echo "Successful 2 ";
 			}
-
 			mysqli_close($conn);
 	    }
 	}
@@ -206,7 +197,8 @@ print_r($_POST);
   							<input  type="checkbox" name="Reading[]" value="Blogs">Blogs
   							<input type="checkbox" name="Reading[]" value="Novel">Novel
   							<input type="checkbox" name="Reading[]" value="Short Stories">Short Stories</div>
-					<input type="submit" name="SUBSCRIBE" class="button button_pos_ryt">
+					<input type="submit" name="SUBSCRIBE" value="SUBSCRIBE" class="button button_pos_ryt">
+					<?php if (isset($_POST['SUBSCRIBE'])) { echo "<script type='text/javascript'>tab(2);</script>"; } ?>
 					<button type="reset" value="Reset" class="button button_pos_ryt1">RESET</button>
 					
 				</form>
