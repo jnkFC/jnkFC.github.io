@@ -50,31 +50,5 @@ function opt(){
 	document.getElementById("state1_name").style.visibility="visible";
 	
 }
-function fav(){
-	if(document.getElementById("F_ball").checked){
-		document.getElementById("Reading_opt").style.display="none";
-		document.getElementById("Movie_opt").style.display="none";
-		document.getElementById("F_ball_opt").style.display="inline";
-	}
-	else  if(document.getElementById("Movie").checked){
-		document.getElementById("Reading_opt").style.display="none";
-		document.getElementById("F_ball_opt").style.display="none";
-		document.getElementById("Movie_opt").style.display="inline";
-	}
-	else if(document.getElementById("Reading").checked){
-		document.getElementById("Movie_opt").style.display="none";
-		document.getElementById("F_ball_opt").style.display="none";
-		document.getElementById("Reading_opt").style.display="inline";
-	}
-	if((document.getElementById("F_ball").checked)==false){
-		document.getElementById("F_ball_opt").style.display="none";
-	}
-	if((document.getElementById("Movie").checked)==false){
-		document.getElementById("Movie_opt").style.display="none";
-	}
-	if((document.getElementById("Reading").checked)==false){
-		document.getElementById("Reading_opt").style.display="none";
-	}
-	
-}
+
 

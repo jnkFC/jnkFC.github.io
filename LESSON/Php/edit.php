@@ -79,6 +79,7 @@
 	      		<tr>
 	      			<td align="right">
 	          		<input type="submit" name="submit value" value="Edit">
+	          		<button><a href="editdb.php">Delete</a></button>
 	      			</td>
 	      		</tr>
 	    		</form>
