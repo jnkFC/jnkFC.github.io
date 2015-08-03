@@ -11,4 +11,6 @@
 	}
 	$order = "UPDATE detail SET name='$_GET[name]', email='$_GET[email]', country='$_GET[country]', phn_no=$_GET[phn_no], gender='$_GET[gender]' WHERE email='$_GET[email]' ";
  	mysqli_query($conn,$order);
+ 	$order1 = "UPDATE interest SET football='$_GET[football]', movie='$_GET[movie]', reading='$_GET[reading]' WHERE email='$_GET[email]' ";
+ 	mysqli_query($conn,$order1);
 ?>

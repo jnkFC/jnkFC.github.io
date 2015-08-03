@@ -54,16 +54,37 @@
   		$success=0;
   		$interestErr = "Interest is required";
   	} else {
-  		$interest = $_GET["interest"];
+  		$interest = explode(',',($_GET["interest"]),-1);
+      echo $interest[0];
   	}
   	
   	if($success == 1){
   		 	
 			$sucMessage="Subscription Successful!!";
-	  		$data = "$name, $email,$country, $state, $gender, $interest, $phn_no \n";
-			$myf = fopen("/home/jiteshnk/jnkFC.github.io/LESSON/Php/details.csv", "a");
-			fwrite($myf, $data);
-			fclose($myf);
+	  	
+			$servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "subscriber";
+      
+      // Create connection
+      $conn = mysqli_connect($servername, $username, $password, $dbname);
+      // Check connection
+      if (!$conn) {
+          die("Connection failed: " . mysqli_connect_error());
+      }
+
+      $sql1 = "INSERT INTO detail (name,email,gender,phn_no,country,state) VALUES ('$name', '$email', '$gender', '$phn_no', '$country', '$state')";
+      $sql2 = "INSERT INTO interest (email,football,movie,reading) VALUES ('$email', '$interest[0]','$interest[1]','$interest[2]')";
+      if (mysqli_query($conn, $sql1)) {
+            echo "New record created successfully";
+        } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+      if(mysqli_query($conn, $sql2)){
+       echo "Successful 2 ";
+      }
+      mysqli_close($conn);
 			echo $sucMessage;
 		}
 		else{
