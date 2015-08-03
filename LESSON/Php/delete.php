@@ -9,9 +9,9 @@
 	if (!$conn) {
     	die("Connection failed: " . mysqli_connect_error());
 	}
-	$del = "DELETE FROM subscribe where email=$email";
+	$del = "DELETE FROM detail where email='$email'";
   	mysqli_query($conn, $del );
-    $del1="DELETE from interest where email=$email";
+    $del1="DELETE from interest where email='$email'";
   	mysqli_query($conn, $del1 );
     
 ?>
