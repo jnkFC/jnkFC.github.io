@@ -38,7 +38,7 @@
     $success=0;
   	} else {
   	    $gender = ($_GET["sex"]);
-  	     echo $_GET["sex"];
+  	     
 		
   	}
   	if (empty($_GET["phn_no"])) {
@@ -55,8 +55,7 @@
   		$interestErr = "Interest is required";
   	} else {
   		$interest = explode(',',($_GET["interest"]),-1);
-      echo $interest[0];
-  	}
+     }
   	
   	if($success == 1){
   		 	
@@ -82,7 +81,7 @@
           echo "Error: " . $sql . "<br>" . mysqli_error($conn);
       }
       if(mysqli_query($conn, $sql2)){
-       echo "Successful 2 ";
+       
       }
       mysqli_close($conn);
 			echo $sucMessage;
