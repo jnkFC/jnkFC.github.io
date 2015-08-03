@@ -13,4 +13,5 @@
  	mysqli_query($conn,$order);
  	$order1 = "UPDATE interest SET football='$_GET[football]', movie='$_GET[movie]', reading='$_GET[reading]' WHERE email='$_GET[email]' ";
  	mysqli_query($conn,$order1);
+ 	echo "Table updated";
 ?>

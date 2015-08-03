@@ -13,5 +13,6 @@
   	mysqli_query($conn, $del );
     $del1="DELETE from interest where email='$email'";
   	mysqli_query($conn, $del1 );
+  	echo "Deletion Successful!!";
     
 ?>
