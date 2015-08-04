@@ -33,7 +33,7 @@
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
-    		document.getElementById("div11").innerHTML=xmlhttp.responseText;
+    		document.getElementById("msg").innerHTML=xmlhttp.responseText;
     	}
   	}
   	var name=document.getElementById("name").value;
@@ -42,7 +42,11 @@
     var state=document.getElementById("state").value;
     var gender=document.getElementById("gender").value;
    	var phn_no=document.getElementById("phn_no").value;
-	var inp="?name="+name+"&email="+email+"&country="+country+"&state="+state+"&gender="+gender+"&phone="+phn_no;
+   	var football=document.getElementById("football").value;
+	var movie=document.getElementById("movie").value;
+	var reading=document.getElementById("reading").value;
+
+	var inp="?name="+name+"&email="+email+"&country="+country+"&state="+state+"&gender="+gender+"&phn_no="+phn_no+"&football="+football+"&movie="+movie+"&reading="+reading;
 	if(i==1)
 		xmlhttp.open("GET","update.php"+inp,true);
 	else
@@ -57,16 +61,15 @@
 	  	<tr>
 		  	<td>
 		    	<table> <?php
-		    	if ($_SERVER["REQUEST_METHOD"] == "POST") {
-		    		$email=$_POST["email"];
-		    	}
-		    	else
-		    		$email=$_GET["email"];
-		    	$order = "SELECT * FROM detail where email='$email' ";
-				$result = mysqli_query($conn,$order);
-	      		$row = mysqli_fetch_array($result);
+		    	$email=$_GET["email"];
+		    	$order = "SELECT * FROM detail where   email='$email' ";
+		    	$result = mysqli_query($conn,$order);
+				$row = mysqli_fetch_array($result);
+				$order1 = "SELECT * FROM interest where   email='$email' ";
+				$result1 = mysqli_query($conn,$order1);
+	      		$row1 = mysqli_fetch_array($result1);
 	      		?>
-	      		<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+	      		<form>
 	      		
 	      		<tr>
 	      			<td>Name</td>
@@ -105,12 +108,31 @@
 	      			</td>
 	      		</tr>
 	      		<tr>
+	        		<td>FOOTBALL</td>
+	        		<td>
+	          			<input id="football" type="text" name="football" size="30" value="<? echo "$row1[football]"?>">
+	      			</td>
+	      		</tr>
+	      		<tr>
+	        		<td>MOVIE</td>
+	        		<td>
+	          			<input id="movie" type="text" name="movie" size="30" value="<? echo "$row1[movie]"?>">
+	      			</td>
+	      		</tr>
+	      		<tr>
+	        		<td>Reading</td>
+	        		<td>
+	          			<input id="reading" type="text" name="reading" size="30" value="<? echo "$row1[reading]"?>">
+	      			</td>
+	      		</tr>
+	      		<tr>
 	      			<td align="right">
 	          		<input type="button" name="Update" value="Edit" onclick="edit(1)">
-	          		<input type="button" name="Update" value="Edit" onclick="edit(2)">
+	          		<input type="button" name="Update" value="Delete" onclick="edit(2)">
 	      			</td>
 	      		</tr>
 	    		</form>
+	    		<div id="msg"></div>
 	  			</table>
 	  		</td>
 		</tr>
