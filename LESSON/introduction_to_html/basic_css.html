@@ -4,20 +4,24 @@
 <link rel="stylesheet" type="text/css" href="basic_css.css">
 </head>
 <body>
-	<div class="outer_frame border" >
-		<button class="menu1">News</button>
-		<button class="menu2">Subscribe</button>
-		<div class="frame1 positioning border">
-			<h2>WELCOME</h2>
-				<p>Simple and effective AngularJS bindings for FusionCharts JavaScript Charting Library.Simple and effective AngularJS bindings for FusionCharts JavaScript Charting Library.</p>
-				<p> AngularJS bindings for FusionCharts JavaScript Charting Library</p>
-				<button class="button">LEARN MORE</button>
+	<div id="Page" position="relative"> 
+		<ul>
+			<li id="tab1" class="news_tab" ><a  id="tab1_a" href="#">News</a></li>
+			<li id="tab2" class="subs_tab" ><a id="tab2_a"  href="#">Subscribe</a></li>
+		</ul>
+		<div id="News" class="outer_frame border" >
+			
+			<div class="frame1 fram_pos positioning border">
+				<h1>Welcome</h1>
+					<p>Simple and effective AngularJS bindings for FusionCharts JavaScript Charting Library.Simple and 	effective AngularJS bindings for FusionCharts JavaScript Charting Library.</p>
+					<p style="color:#1b6bce"> AngularJS bindings for FusionCharts JavaScript Charting Library</p>
+					<button class="button button_pos_lft">LEARN MORE</button>
+			</div>
+			<div class="frame2 fram_pos positioning border">
+				<h1>Latest News</h1>
+				<img class="image" src="image.jpg"> 
+			</div>
 		</div>
-		<div class="frame2 positioning border">
-			<h2>Latest News</h2>
-			<p>	<img class="positioning" src="image.jpg"> </p>
-		</div>
-		
 	</div>
 </body>
 </html>
